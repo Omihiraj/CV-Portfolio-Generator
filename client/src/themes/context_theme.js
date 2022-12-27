@@ -11,10 +11,11 @@ export const ContextTheme = ()=>{
     const id = params.userId
     
     useEffect(()=>{
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+        fetch(`http://localhost:5000/api/users/${id}`)
         .then(res => res.json())
         .then((result)=>{
             setItem(result)
+            console.log(result.themeid)
         })
     },[])
    return(

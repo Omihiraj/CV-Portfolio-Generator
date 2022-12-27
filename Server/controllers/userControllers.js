@@ -24,6 +24,7 @@ const addUser = asyncHandler(async(req,res)=>{
         adrs:          req.body.adrs ,
         phone:         req.body.phone ,
         email:         req.body.email ,
+        themeid:       req.body.themeid ,
     })
 
     res.status(200).json(user)

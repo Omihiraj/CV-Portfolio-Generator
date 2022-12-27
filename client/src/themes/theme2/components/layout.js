@@ -12,6 +12,7 @@ import { Experience } from './experience'
 import { Skills } from './skills'
 import { Projects } from './projects'
 import { Contact } from './contact'
+import { CopyWright } from './copyright'
 export const Layout = ()=>{
     return(
        <div className='h-screen flex'>
@@ -65,6 +66,10 @@ export const Layout = ()=>{
                 <Element name="contact" className="element h-[110%] bg-theme2bg text-white">
                     <Contact/>    
                 </Element>
+                <div className="element h-[30%] bg-theme2bg text-white">
+                    <CopyWright/>
+                </div>
+                
             </div>
         </div>
    

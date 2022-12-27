@@ -1,13 +1,16 @@
+import { useContext } from "react"
+import { ThemeContext } from "../../context_theme"
 import headerNameImg from '../img/hncontainer.png'
 export const Home = ()=>{
+    const item = useContext(ThemeContext)
     return(
         <>
             <div className='z-10 absolute left-[35%] top-[25%]'>
                 <img src = {headerNameImg} className='w-3/4 h-3/4 ' />
                         
                 <div className='absolute top-[25%] left-[12%]'>
-                    <p className='text-9xl font-extrabold'>Lucia</p>
-                    <p className='text-7xl font-extrabold pl-14'>Cangat</p>
+                    <p className='text-9xl font-extrabold'>{item.fname}</p>
+                    <p className='text-7xl font-extrabold pl-14'>{item.lname}</p>
                 </div>           
             </div>
 

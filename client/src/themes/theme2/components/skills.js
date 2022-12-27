@@ -1,9 +1,32 @@
+import { useContext } from "react"
+import { ThemeContext } from "../../context_theme"
+
 export const Skills = ()=>{
+    const item = useContext(ThemeContext)
     return(
         <div className='absolute left-[55%] top-[590%]'>
             <p className='text-xl text-secondaryblue font-normal pb-6'>Skills</p>
-            <div className="grid grid-cols-2 gap-6">
-                <div className='mt-4'>HTML</div>
+        
+                {
+                    item.skills.map(
+                        (skill)=>{
+                            var marginVal = skill.percentage-5
+                            return(
+                                
+                                <div className="grid grid-cols-2 gap-6 mt-2">
+                                    <div className='mt-4'>{skill.name}</div>
+                                    <div className='w-[500%]'>
+                                        <div className={`ml-[${marginVal}%] text-secondarypink`}>{skill.percentage}%</div>
+                                        <div className="bg-[#111111] rounded-full h-2.5 mt-1 ">
+                                            <div className="bg-secondarypink h-2.5 rounded-full" style={{width: `${skill.percentage}%`}}></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    )
+                }
+                {/* <div className='mt-4'>HTML</div>
                 <div className='w-[500%]'>
                     <div className='ml-[85%] text-secondarypink'>90%</div>
                     <div className="bg-[#111111] rounded-full h-2.5 mt-1 ">
@@ -41,10 +64,10 @@ export const Skills = ()=>{
                     <div className="bg-[#111111] rounded-full h-2.5 mt-1 ">
                         <div className="bg-secondarypink h-2.5 rounded-full" style={{width: '60%'}}></div>
                     </div>
-                </div>
+                </div> */}
                 
                
-            </div>
+            
 
         </div>
 

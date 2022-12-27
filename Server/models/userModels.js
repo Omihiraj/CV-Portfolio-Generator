@@ -13,6 +13,7 @@ const userSchema = mongoose.Schema({
     phone:         { type: String, required: true } ,
     email:         { type: String, required: true } ,
     services:      [{ name: String, desc: String }],
+    themeid:       { type: Number,  required: true },
     // experience:    [{ pos: String, company: String,  sdate: Date, edate: Date, desc:String}],
     // skills:        [{ name: String, percentage: Number }],
     // portfolio:     [{ url: String, title: String, desc:String }],
