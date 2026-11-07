@@ -1,556 +1,375 @@
 
-# 🚀 Dynamic CV & Portfolio Generator
+# 🚀 Serverless Appointment Booking System
 
-### Create Your Professional Resume & Personal Portfolio Website Without Coding
+### Modernizing a Legacy .NET Application into a Cloud-Native AWS Serverless Architecture
 
-A full-stack web application that allows users to create personalized CVs and professional portfolio websites dynamically. Users can enter their personal and professional information, select from available design templates, and generate a customized portfolio website using their own details.
-
-The platform simplifies the process of building an online professional identity by eliminating the need to manually design and develop a personal website.
+<p align="center">
+  <img src="https://img.shields.io/badge/.NET-C%23-purple?style=for-the-badge&logo=dotnet" />
+  <img src="https://img.shields.io/badge/AWS-Lambda-orange?style=for-the-badge&logo=awslambda" />
+  <img src="https://img.shields.io/badge/AWS-API%20Gateway-orange?style=for-the-badge&logo=amazonaws" />
+  <img src="https://img.shields.io/badge/AWS-DynamoDB-blue?style=for-the-badge&logo=amazondynamodb" />
+  <img src="https://img.shields.io/badge/AWS-Cognito-orange?style=for-the-badge&logo=amazonaws" />
+</p>
 
 ---
 
-## 📌 Project Overview
+## 📖 Project Overview
 
-In today's competitive job market, having a professional CV and an online portfolio is essential for showcasing skills, qualifications, work experience, and professional achievements.
+This project demonstrates the modernization of a locally hosted legacy .NET appointment booking application into a cloud-native, serverless architecture using Amazon Web Services (AWS).
 
-However, creating a well-designed CV and personal portfolio website often requires technical knowledge, design skills, and considerable development time.
+The original application relied on traditional server-based hosting, which introduced infrastructure management overhead, scaling limitations, and operational costs.
 
-To address this challenge, I developed a **Dynamic CV & Portfolio Generator System**.
+To address these challenges, I re-architected the application using AWS managed services and serverless computing.
 
-The application allows users to provide their professional information through a web interface and choose from predefined website templates. Based on the selected template and submitted information, the system dynamically generates a personalized CV and portfolio website.
+The modernized solution uses **AWS Lambda with .NET (C#), Amazon API Gateway, Amazon Cognito, Amazon DynamoDB, and Amazon S3** to deliver a scalable, flexible, and cost-efficient appointment booking platform.
 
-Instead of developing a personal website from scratch, users can create their own professional online presence through a simple and user-friendly process.
+The architecture eliminates the need to provision and maintain application servers while allowing backend functions to scale automatically based on incoming requests.
 
-## 🎯 Project Objectives
+This project demonstrates practical cloud application modernization, serverless backend development, managed authentication, and cloud-native application architecture.
 
-- Simplify the process of creating professional CVs and portfolio websites.
-- Allow users to build their professional profiles without programming knowledge.
-- Provide multiple predefined website templates.
-- Dynamically generate personalized websites using user-provided information.
-- Separate content management from website presentation.
-- Reduce the time and effort required to develop a personal portfolio website.
-- Provide a flexible platform that can be extended with additional templates and features.
+## 🎯 Problem Statement
 
-## ✨ Key Features
+Traditional application hosting introduces several challenges as business requirements and user traffic grow.
 
-### 📝 Dynamic Profile Management
-- Enter personal and professional information.
-- Add educational qualifications and work experience.
-- Showcase technical skills and professional achievements.
-- Manage information used to generate the portfolio.
+The legacy appointment booking application faced challenges such as:
 
-### 🎨 Multiple Website Templates
-- Choose from available portfolio design templates.
-- Customize the appearance of the generated professional website.
-- Use predefined layouts without manually writing HTML or CSS.
+- **Infrastructure Dependency:** Application deployment and execution depended on locally hosted servers.
+- **Limited Scalability:** Handling increased appointment requests required additional infrastructure capacity and manual intervention.
+- **Operational Overhead:** Server maintenance, configuration, monitoring, and infrastructure management required additional effort.
+- **Fixed Infrastructure Costs:** Resources needed to remain available even during periods of low application usage.
+- **Traditional Authentication Management:** Application authentication and user management required application-side responsibilities.
 
-### ⚡ Dynamic Website Generation
-- Generate a personalized portfolio website using submitted user information.
-- Populate the selected template with the user's professional details.
-- Separate portfolio content from its visual presentation.
-- Create a professional online presence without developing a website from scratch.
+These limitations motivated the migration toward a cloud-native serverless architecture.
 
-### 💼 Professional Portfolio Presentation
-- Present personal and professional information in an organized format.
-- Showcase qualifications, experience, and skills.
-- Provide a dedicated professional portfolio experience.
+## 💡 Solution: AWS Serverless Modernization
 
-### 🌐 Full-Stack Web Application
-- React-based frontend application.
-- Node.js and Express.js backend.
-- MongoDB database integration.
-- REST API-based client-server communication.
+The application was redesigned using AWS managed services, replacing traditional application server hosting with a serverless execution model.
+
+Instead of maintaining continuously running application servers, the backend business logic executes through AWS Lambda functions.
+
+Amazon API Gateway provides the API entry point, Amazon Cognito handles user authentication, and DynamoDB provides scalable NoSQL data storage.
+
+The frontend is hosted as a static web application using Amazon S3.
+
+### Key Architectural Improvements
+
+- Eliminated application server provisioning and maintenance.
+- Enabled automatic compute scaling through AWS Lambda.
+- Adopted managed authentication using Amazon Cognito.
+- Introduced serverless NoSQL data storage using DynamoDB.
+- Separated frontend hosting from backend application execution.
+- Adopted a usage-based cloud infrastructure model.
+- Reduced operational responsibilities through AWS managed services.
+
+---
 
 ## 🏗️ System Architecture
 
-The application follows a client-server architecture with three main components.
+The application follows a serverless client-server architecture.
 
-1. **Frontend Application:** Provides the user interface for entering information, navigating the application, and selecting portfolio templates.
-2. **Backend Application:** Handles API requests, application logic, and communication with the database.
-3. **Database Layer:** Uses MongoDB to manage application data through Mongoose.
+### 1. Frontend Layer
 
-### High-Level Architecture
+**Amazon S3**
+
+- Hosts the static frontend application.
+- Separates frontend deployment from backend execution.
+- Provides scalable object storage for frontend assets.
+
+### 2. API and Application Layer
+
+**Amazon API Gateway**
+
+- Exposes RESTful API endpoints.
+- Receives incoming application requests.
+- Integrates with AWS Lambda functions.
+
+**AWS Lambda (.NET / C#)**
+
+- Executes backend business logic.
+- Processes appointment-related operations.
+- Handles application requests without requiring dedicated application servers.
+- Scales execution based on incoming demand.
+
+### 3. Authentication Layer
+
+**Amazon Cognito**
+
+- Manages user registration and authentication.
+- Provides managed identity services.
+- Supports authentication and authorization integration with application APIs.
+
+### 4. Data Layer
+
+**Amazon DynamoDB**
+
+- Stores appointment and user-related application data.
+- Provides managed NoSQL database capabilities.
+- Supports low-latency data access.
+
+### High-Level Architecture Diagram
 
 ```mermaid
 flowchart TD
-    A[User] --> B[React Frontend]
-    B --> C[Profile Information Form]
-    C --> D[Template Selection]
-    D --> E[Express REST API]
-    E --> F[Node.js Backend]
-    F --> G[(MongoDB Database)]
-    G --> F
-    F --> H[User Profile Data]
-    H --> I[Dynamic Template Rendering]
-    I --> J[Generated Portfolio Website]
-    J --> K[Professional Online Profile]
+    U[Users] --> FE[Frontend Web Application]
+    FE --> S3[Amazon S3 Hosting]
+
+    FE --> AUTH[Amazon Cognito]
+    AUTH --> TOKEN[Authentication Token]
+
+    FE --> APIGW[Amazon API Gateway]
+    TOKEN -. Authorization .-> APIGW
+
+    APIGW --> L1[AWS Lambda - .NET]
+    L1 --> DB[(Amazon DynamoDB)]
+
+    DB --> L1
+    L1 --> APIGW
+    APIGW --> FE
+    FE --> U
 ```
 
-## 🔄 How It Works
+*The diagram represents the high-level logical architecture. Actual authorization configuration and integration details depend on the deployed API setup.*
 
-The general user workflow is designed to be simple:
+---
 
-1. The user accesses the CV & Portfolio Generator application.
-2. The user enters personal information and professional details.
-3. The user provides information about education, skills, and work experience.
-4. The user selects a preferred portfolio website template.
-5. The frontend communicates with the backend through REST APIs.
-6. The backend processes the submitted information and interacts with MongoDB.
-7. The selected template is populated with the user's information.
-8. The system generates a personalized professional portfolio website.
+## ✨ Key Features
 
-## 🛠️ Technologies Used
+### 🔐 Secure Authentication & Authorization
 
-### Frontend
+Integrated Amazon Cognito to manage user authentication.
+
+- User registration and sign-in.
+- Managed identity and authentication.
+- Token-based authentication integration.
+- Centralized user identity management.
+
+### 📅 Appointment Management
+
+A serverless backend for managing appointment-related operations.
+
+- Create appointments.
+- Retrieve appointment information.
+- Update existing appointments.
+- Cancel appointments.
+- Store and retrieve appointment data using DynamoDB.
+
+### ⚡ Serverless API Processing
+
+AWS Lambda powers the backend application.
+
+- Execute .NET business logic through Lambda.
+- Integrate backend functions with API Gateway.
+- Scale compute execution automatically.
+- Eliminate traditional application server management.
+
+### 🗄️ Serverless Database
+
+Amazon DynamoDB provides the persistence layer.
+
+- Managed NoSQL storage.
+- Scalable data access.
+- Flexible data modeling.
+- Integration with Lambda-based application logic.
+
+### ☁️ Cloud-Based Frontend Hosting
+
+Amazon S3 hosts the static frontend application.
+
+- Static website asset hosting.
+- Independent frontend deployment.
+- Separation of presentation and application layers.
+
+### 💰 Usage-Based Infrastructure
+
+The architecture uses AWS managed services with consumption-based pricing models.
+
+- No continuously running application servers are required.
+- Compute costs are based on Lambda execution.
+- Database and storage costs depend on resource usage.
+- Infrastructure can scale with application demand.
+
+---
+
+## 🛠️ Technology Stack
+
+### Backend Development
 
 | Technology | Purpose |
 |---|---|
-| React.js 18 | Component-based frontend development |
-| React Router | Client-side navigation |
-| Tailwind CSS | UI styling |
-| CSS3 | Custom styling |
-| React Icons | Interface icons |
-| React Slick | Carousel and slider functionality |
-| JavaScript | Frontend application logic |
-| HTML5 | Web application structure |
+| C# | Backend application development |
+| .NET | Application runtime and business logic |
+| AWS Lambda | Serverless backend execution |
+| Amazon API Gateway | REST API management |
 
-### Backend
+### Frontend & Hosting
 
 | Technology | Purpose |
 |---|---|
-| Node.js | Server-side JavaScript runtime |
-| Express.js | REST API development |
-| Mongoose | MongoDB object modeling |
-| CORS | Cross-origin communication |
-| dotenv | Environment configuration |
-| express-async-handler | Asynchronous request handling |
-| colors | Development console output |
+| TypeScript | Frontend application development |
+| JavaScript | Client-side functionality |
+| Amazon S3 | Static frontend hosting |
 
-### Database
+### Authentication & Database
 
-- MongoDB
+| Technology | Purpose |
+|---|---|
+| Amazon Cognito | User authentication and identity management |
+| Amazon DynamoDB | NoSQL database |
+| IAM | AWS permissions and access management |
 
-## 📂 Project Structure
+### Cloud Architecture
+
+- AWS Serverless Architecture
+- Cloud-Native Application Modernization
+- Managed Cloud Services
+- Environment-Based Configuration
+
+---
+
+## 🔄 Legacy Architecture vs Modernized Architecture
+
+One of the main objectives of this project was to demonstrate how an existing server-based application can be modernized using cloud-native technologies.
+
+| Aspect | Legacy Application | Modernized Application |
+|---|---|---|
+| Hosting | Local / On-Premise | Amazon S3 and AWS Lambda |
+| Backend Execution | Server-Based .NET | Serverless .NET Lambda |
+| API Management | Traditional Application Hosting | Amazon API Gateway |
+| Authentication | Application-Side Management | Amazon Cognito |
+| Database | Traditional Database Approach | Amazon DynamoDB |
+| Scaling | Infrastructure-Dependent | Automatic Lambda Scaling |
+| Infrastructure | Server Maintenance Required | Managed AWS Services |
+| Cost Model | Infrastructure-Based | Usage-Based Services |
+
+---
+
+## 🔍 Serverless Architecture Concepts Demonstrated
+
+This project provides practical experience with several important cloud architecture concepts.
+
+### 1. Serverless Computing
+
+Using AWS Lambda to execute application business logic without provisioning or managing application servers.
+
+### 2. Managed API Architecture
+
+Using Amazon API Gateway as the API entry point and integration layer for backend Lambda functions.
+
+### 3. Managed Authentication
+
+Using Amazon Cognito to separate user identity management from application business logic.
+
+### 4. NoSQL Database Architecture
+
+Using Amazon DynamoDB for scalable application data persistence.
+
+### 5. Separation of Concerns
+
+Separating frontend hosting, backend execution, authentication, and data storage into independently managed cloud services.
+
+### 6. Cloud Application Modernization
+
+Transforming an existing legacy application into a cloud-native architecture without relying on traditional application server hosting.
+
+---
+
+## 📂 Repository Structure
 
 ```text
-CV-Portfolio-Generator/
+aws-serverless-appointment-system/
 │
-├── client/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── App.js
-│   │   └── ...
-│   └── package.json
+├── Api/
+│   └── .NET backend and AWS Lambda application
 │
-├── Server/
-│   ├── config/
-│   │   └── db.js
-│   ├── middleware/
-│   │   └── errorMiddleware.js
-│   ├── routes/
-│   │   └── userRoutes.js
-│   └── server.js
+├── Frontend/
+│   └── Frontend application
 │
-├── package.json
-├── package-lock.json
 └── README.md
 ```
 
-## ⚙️ Installation & Setup
+---
 
-Follow these steps to run the project locally.
+## 📚 Additional Learning Resource: Event-Driven Architecture with AWS Lambda
 
-### Prerequisites
+Serverless computing is not limited to handling HTTP API requests.
 
-Make sure you have installed:
+AWS Lambda can also execute automatically in response to events generated by other AWS services.
 
-- Node.js
-- npm
-- MongoDB (local installation or MongoDB Atlas)
-- Git
+I have created a separate practical demonstration to help developers understand how Lambda can be used as part of an event-driven architecture.
 
-### 1. Clone the Repository
+### 🎥 Watch the Event-Driven Architecture Demonstration
 
-```bash
-git clone https://github.com/Omihiraj/CV-Portfolio-Generator.git
+[![AWS Lambda Event-Driven Architecture](https://img.youtube.com/vi/ydHVK8zW844/maxresdefault.jpg)](https://youtu.be/ydHVK8zW844)
 
-cd CV-Portfolio-Generator
-```
+**Watch on YouTube:** https://youtu.be/ydHVK8zW844
 
-### 2. Install Backend Dependencies
+This is a separate project and learning example, not an implementation component of this appointment booking system.
 
-From the project root directory:
+### What You Can Learn
 
-```bash
-npm install
-```
+- How event-driven architecture works.
+- How AWS Lambda responds to events.
+- How event-based processing differs from traditional synchronous API execution.
+- How serverless functions can be used to build loosely coupled application workflows.
+- How event-driven patterns can help build scalable cloud-native systems.
 
-### 3. Configure Environment Variables
+### Understanding the Difference
 
-Create a `.env` file in the root directory.
+| API-Driven Architecture | Event-Driven Architecture |
+|---|---|
+| Triggered by API requests | Triggered by events |
+| Often synchronous | Often asynchronous |
+| API Gateway can invoke Lambda | AWS services can invoke Lambda |
+| Returns an API response | Processes events independently |
 
-Configure the required environment variables according to the database connection implementation in `Server/config/db.js`.
+Both architectural approaches are valuable when designing modern cloud applications. AWS supports both direct service integrations and event-source-based Lambda execution.
 
-Example:
-
-```env
-PORT=8000
-MONGO_URI=your_mongodb_connection_string
-```
-
-### 4. Start the Backend Server
-
-```bash
-npm start
-```
-
-For development with automatic server restarting:
-
-```bash
-npm run server
-```
-
-The backend uses port `8000` by default unless another port is configured.
-
-### 5. Install Frontend Dependencies
-
-Open a new terminal:
-
-```bash
-cd client
-
-npm install
-```
-
-### 6. Start the Frontend Application
-
-```bash
-npm start
-```
-
-The React development server will start, typically at:
-
-```text
-http://localhost:3000
-```
-
-Make sure the frontend API configuration points to the running backend server.
-
-## 🌟 Project Highlights
-
-This project demonstrates the practical application of full-stack web development concepts, including:
-
-- Building reusable React components.
-- Developing RESTful APIs using Express.js.
-- Integrating MongoDB with Mongoose.
-- Implementing client-server communication.
-- Managing dynamic user-provided information.
-- Creating template-driven web applications.
-- Separating frontend presentation from backend processing.
+---
 
 ## 🚀 Future Enhancements
 
-Potential improvements to extend the platform:
+Potential improvements for extending this application include:
 
-- Additional professional CV and portfolio templates.
-- Live portfolio preview while editing information.
-- Custom domain support for generated portfolio websites.
-- PDF CV generation and downloading.
-- Drag-and-drop portfolio customization.
-- Public portfolio sharing through unique URLs.
-- Social media and GitHub profile integration.
-- AI-assisted CV content improvement.
-- Responsive templates optimized for mobile devices.
-- User dashboard for managing multiple CVs and portfolios.
+- Infrastructure as Code using AWS CDK or Terraform.
+- CI/CD automation using GitHub Actions.
+- Advanced appointment scheduling and availability management.
+- Event-driven appointment notifications.
+- Appointment reminders using Amazon EventBridge Scheduler.
+- Asynchronous processing using Amazon SQS.
+- Centralized logging and monitoring using Amazon CloudWatch.
+- Distributed tracing and observability.
+- Enhanced API security and request validation.
+- Automated deployment across development, staging, and production environments.
+
+---
+
+## 🎓 What This Project Demonstrates
+
+This project demonstrates practical experience in:
+
+- Legacy application modernization.
+- AWS cloud architecture design.
+- Serverless application development.
+- .NET and C# backend development.
+- AWS Lambda integration.
+- RESTful API development.
+- Amazon Cognito authentication.
+- DynamoDB data modeling and integration.
+- Cloud-based frontend hosting.
+- Cost-aware cloud architecture design.
+
+The main architectural objective was to move away from traditional server-dependent application hosting and adopt a more scalable, maintainable, and operationally efficient cloud-native solution.
+
+---
 
 ## 👨‍💻 Developer
 
 **Oshan Mihiraj Wijesooriya**
 
-Software Engineer | Full-Stack Development | Software Architecture
+Software Engineer | .NET | AWS | Cloud Architecture
 
-GitHub: [@Omihiraj](https://github.com/Omihiraj)
-
----
-
-⭐ If you find this project interesting, consider giving this repository a star!
-
-
-# 🚀 Dynamic CV & Portfolio Generator
-
-### Create Your Professional Resume & Personal Portfolio Website Without Coding
-
-A full-stack web application that allows users to create personalized CVs and professional portfolio websites dynamically. Users can enter their personal and professional information, select from available design templates, and generate a customized portfolio website using their own details.
-
-The platform simplifies the process of building an online professional identity by eliminating the need to manually design and develop a personal website.
-
----
-
-## 📌 Project Overview
-
-In today's competitive job market, having a professional CV and an online portfolio is essential for showcasing skills, qualifications, work experience, and professional achievements.
-
-However, creating a well-designed CV and personal portfolio website often requires technical knowledge, design skills, and considerable development time.
-
-To address this challenge, I developed a **Dynamic CV & Portfolio Generator System**.
-
-The application allows users to provide their professional information through a web interface and choose from predefined website templates. Based on the selected template and submitted information, the system dynamically generates a personalized CV and portfolio website.
-
-Instead of developing a personal website from scratch, users can create their own professional online presence through a simple and user-friendly process.
-
-## 🎯 Project Objectives
-
-- Simplify the process of creating professional CVs and portfolio websites.
-- Allow users to build their professional profiles without programming knowledge.
-- Provide multiple predefined website templates.
-- Dynamically generate personalized websites using user-provided information.
-- Separate content management from website presentation.
-- Reduce the time and effort required to develop a personal portfolio website.
-- Provide a flexible platform that can be extended with additional templates and features.
-
-## ✨ Key Features
-
-### 📝 Dynamic Profile Management
-- Enter personal and professional information.
-- Add educational qualifications and work experience.
-- Showcase technical skills and professional achievements.
-- Manage information used to generate the portfolio.
-
-### 🎨 Multiple Website Templates
-- Choose from available portfolio design templates.
-- Customize the appearance of the generated professional website.
-- Use predefined layouts without manually writing HTML or CSS.
-
-### ⚡ Dynamic Website Generation
-- Generate a personalized portfolio website using submitted user information.
-- Populate the selected template with the user's professional details.
-- Separate portfolio content from its visual presentation.
-- Create a professional online presence without developing a website from scratch.
-
-### 💼 Professional Portfolio Presentation
-- Present personal and professional information in an organized format.
-- Showcase qualifications, experience, and skills.
-- Provide a dedicated professional portfolio experience.
-
-### 🌐 Full-Stack Web Application
-- React-based frontend application.
-- Node.js and Express.js backend.
-- MongoDB database integration.
-- REST API-based client-server communication.
-
-## 🏗️ System Architecture
-
-The application follows a client-server architecture with three main components.
-
-1. **Frontend Application:** Provides the user interface for entering information, navigating the application, and selecting portfolio templates.
-2. **Backend Application:** Handles API requests, application logic, and communication with the database.
-3. **Database Layer:** Uses MongoDB to manage application data through Mongoose.
-
-### High-Level Architecture
-
-```mermaid
-flowchart TD
-    A[User] --> B[React Frontend]
-    B --> C[Profile Information Form]
-    C --> D[Template Selection]
-    D --> E[Express REST API]
-    E --> F[Node.js Backend]
-    F --> G[(MongoDB Database)]
-    G --> F
-    F --> H[User Profile Data]
-    H --> I[Dynamic Template Rendering]
-    I --> J[Generated Portfolio Website]
-    J --> K[Professional Online Profile]
-```
-
-## 🔄 How It Works
-
-The general user workflow is designed to be simple:
-
-1. The user accesses the CV & Portfolio Generator application.
-2. The user enters personal information and professional details.
-3. The user provides information about education, skills, and work experience.
-4. The user selects a preferred portfolio website template.
-5. The frontend communicates with the backend through REST APIs.
-6. The backend processes the submitted information and interacts with MongoDB.
-7. The selected template is populated with the user's information.
-8. The system generates a personalized professional portfolio website.
-
-## 🛠️ Technologies Used
-
-### Frontend
-
-| Technology | Purpose |
-|---|---|
-| React.js 18 | Component-based frontend development |
-| React Router | Client-side navigation |
-| Tailwind CSS | UI styling |
-| CSS3 | Custom styling |
-| React Icons | Interface icons |
-| React Slick | Carousel and slider functionality |
-| JavaScript | Frontend application logic |
-| HTML5 | Web application structure |
-
-### Backend
-
-| Technology | Purpose |
-|---|---|
-| Node.js | Server-side JavaScript runtime |
-| Express.js | REST API development |
-| Mongoose | MongoDB object modeling |
-| CORS | Cross-origin communication |
-| dotenv | Environment configuration |
-| express-async-handler | Asynchronous request handling |
-| colors | Development console output |
-
-### Database
-
-- MongoDB
-
-## 📂 Project Structure
-
-```text
-CV-Portfolio-Generator/
-│
-├── client/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── App.js
-│   │   └── ...
-│   └── package.json
-│
-├── Server/
-│   ├── config/
-│   │   └── db.js
-│   ├── middleware/
-│   │   └── errorMiddleware.js
-│   ├── routes/
-│   │   └── userRoutes.js
-│   └── server.js
-│
-├── package.json
-├── package-lock.json
-└── README.md
-```
-
-## ⚙️ Installation & Setup
-
-Follow these steps to run the project locally.
-
-### Prerequisites
-
-Make sure you have installed:
-
-- Node.js
-- npm
-- MongoDB (local installation or MongoDB Atlas)
-- Git
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/Omihiraj/CV-Portfolio-Generator.git
-
-cd CV-Portfolio-Generator
-```
-
-### 2. Install Backend Dependencies
-
-From the project root directory:
-
-```bash
-npm install
-```
-
-### 3. Configure Environment Variables
-
-Create a `.env` file in the root directory.
-
-Configure the required environment variables according to the database connection implementation in `Server/config/db.js`.
-
-Example:
-
-```env
-PORT=8000
-MONGO_URI=your_mongodb_connection_string
-```
-
-### 4. Start the Backend Server
-
-```bash
-npm start
-```
-
-For development with automatic server restarting:
-
-```bash
-npm run server
-```
-
-The backend uses port `8000` by default unless another port is configured.
-
-### 5. Install Frontend Dependencies
-
-Open a new terminal:
-
-```bash
-cd client
-
-npm install
-```
-
-### 6. Start the Frontend Application
-
-```bash
-npm start
-```
-
-The React development server will start, typically at:
-
-```text
-http://localhost:3000
-```
-
-Make sure the frontend API configuration points to the running backend server.
-
-## 🌟 Project Highlights
-
-This project demonstrates the practical application of full-stack web development concepts, including:
-
-- Building reusable React components.
-- Developing RESTful APIs using Express.js.
-- Integrating MongoDB with Mongoose.
-- Implementing client-server communication.
-- Managing dynamic user-provided information.
-- Creating template-driven web applications.
-- Separating frontend presentation from backend processing.
-
-## 🚀 Future Enhancements
-
-Potential improvements to extend the platform:
-
-- Additional professional CV and portfolio templates.
-- Live portfolio preview while editing information.
-- Custom domain support for generated portfolio websites.
-- PDF CV generation and downloading.
-- Drag-and-drop portfolio customization.
-- Public portfolio sharing through unique URLs.
-- Social media and GitHub profile integration.
-- AI-assisted CV content improvement.
-- Responsive templates optimized for mobile devices.
-- User dashboard for managing multiple CVs and portfolios.
-
-## 👨‍💻 Developer
-
-**Oshan Mihiraj Wijesooriya**
-
-Software Engineer | Full-Stack Development | Software Architecture
-
-GitHub: [@Omihiraj](https://github.com/Omihiraj)
+- GitHub: https://github.com/Omihiraj
+- YouTube: https://www.youtube.com/@Omihiraj
 
 ---
 
